@@ -22,6 +22,8 @@ public class DrawLine {
 		
 	}
 	
+	// Draws line from center of source to center of destination
+	// Line visible "on top of" class boxes
 public void drawLine() {
 		
     	double midX = source.width/2;
