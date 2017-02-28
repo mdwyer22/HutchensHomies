@@ -64,6 +64,7 @@ public class ControlPanel extends Application {
             public void handle(ActionEvent event) {
             	if(boxes.size() >= 2){
             		// Draws a line from the most recently drawn class box to a random other class box
+			// Calls methods for most recently drawn box
             		(boxes.get(boxes.size()-1)).drawNewLine(boxes);
             	}
             }
