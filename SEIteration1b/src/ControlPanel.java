@@ -8,6 +8,7 @@
 
 //import java.util.ArrayList;
 
+//Tracks the class boxes
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -29,6 +30,7 @@ public class ControlPanel extends Application {
     }
     
     @Override
+	// Shows GUI with two buttons: "Draw Line" and "Draw Class Box"
     public void start(Stage primaryStage) {
     	
         primaryStage.setTitle("Controls");
@@ -62,6 +64,7 @@ public class ControlPanel extends Application {
             public void handle(ActionEvent event) {
             	if(boxes.size() >= 2){
             		// Draws a line from the most recently drawn class box to a random other class box
+			// Calls methods for most recently drawn box
             		(boxes.get(boxes.size()-1)).drawNewLine(boxes);
             	}
             }
@@ -79,6 +82,9 @@ public class ControlPanel extends Application {
         primaryStage.show();
     }
     
+	// When a class box is created, create a text editor to go with it
+	// Text editor allows you to add text to each section of the class box
+	// Will add or update text when "submit" is pressed
     public void createEditor(DrawClassBox dc){
     	
     	Stage textEditor = new Stage();
@@ -120,6 +126,8 @@ public class ControlPanel extends Application {
     	textEditor.show();
     }
     
+	// When "Draw Class Box" is pressed, check if there's room for a new class box
+	// If there is, create a new DrawClassBox, create an associated editor, and add to class box list
     public void newClassBox(Stage stage, Scene scene, Group a, ArrayList<DrawClassBox> boxes, double size){
     	
     	int count = boxes.size();
