@@ -11,6 +11,10 @@
  * @author mmhahn1
  */
 
+import java.util.ArrayList;
+
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -21,7 +25,7 @@ public class ClassBox {
     // Variables to track dimensions of box
 	double base = 0.75;
 	double width = base*200;
-	double height = base*100;
+	double height = base*300;
 	double startX;
 	double startY;
 	
@@ -38,30 +42,33 @@ public class ClassBox {
     Rectangle baseRec;
     Line sep1;
     Line sep2;
+    
+    ArrayList<MyLine> outboundLines = new ArrayList<MyLine>(16);
+    ArrayList<MyLine> inboundLines = new ArrayList<MyLine>(16);
         
 	public ClassBox (int boxCount, double base) {
 		
             this.boxCount = boxCount;
             this.name = "ClassBox" + boxCount;
             
-            startX = (1.5*width*(boxCount%4)) + 50;
-            startY = (boxCount/4)*(4*height) + 50;
+            startX = 100;
+            startY = 100;
             
-            baseRec = new Rectangle(startX, startY, width, 3*height);
+            baseRec = new Rectangle(startX, startY, width, height);
             baseRec.setFill(Color.WHITE);
             baseRec.setStroke(Color.BLACK);
             
-            sep1 = new Line(startX, startY+height, startX+width, startY+height);
-            sep2 = new Line(startX, startY+(2*height), startX+width, startY+(2*height));
+            sep1 = new Line(startX, startY+(1.0/3.0)*height, startX+width, startY+(1.0/3.0)*height);
+            sep2 = new Line(startX, startY+(2.0/3.0)*height, startX+width, startY+(2.0/3.0)*height);
             
             t1.setX(startX);
             t1.setY(startY + 12);
             t1.setVisible(true);
             t2.setX(startX);
-            t2.setY(startY + height + 12);
+            t2.setY(startY + (1.0/3.0) * height + 12);
             t2.setVisible(true);
             t3.setX(startX);
-            t3.setY(startY + (2* height) + 12);
+            t3.setY(startY + (2.0/3.0) * height + 12);
             t3.setVisible(true);
         }
         
@@ -82,4 +89,63 @@ public class ClassBox {
 		t3.setText(methods);
 		
 	}
+	
+	public void redraw(double x, double y){
+		startX+=x;
+		startY+=y;
+		        
+        //baseRec = new Rectangle(startX, startY, width, 3*height);
+        baseRec.setX(startX);
+        baseRec.setY(startY);
+        
+        //sep1 = new Line(startX, startY+height, startX+width, startY+height);
+        //sep2 = new Line(startX, startY+(2*height), startX+width, startY+(2*height));
+        
+        sep1.setStartX(startX);
+        sep1.setStartY(startY + (1.0/3.0) * height);
+        sep1.setEndX(startX + width);
+        sep1.setEndY(startY + (1.0/3.0) * height);
+        
+        sep2.setStartX(startX);
+        sep2.setStartY(startY + (2.0/3.0) * height);
+        sep2.setEndX(startX + width);
+        sep2.setEndY(startY + (2.0/3.0) * height);
+        
+        t1.setX(startX);
+        t1.setY(startY + 12);
+        t1.setVisible(true);
+        t2.setX(startX);
+        t2.setY(startY + (1.0/3.0) * height + 12);
+        t2.setVisible(true);
+        t3.setX(startX);
+        t3.setY(startY + ((2.0/3.0) * height) + 12);
+        t3.setVisible(true);
+        
+        for (int i=0; i < inboundLines.size(); i++){
+        	inboundLines.get(i).redrawEnd(x, y);
+        }
+        
+        for (int i=0; i < outboundLines.size(); i++){
+        	outboundLines.get(i).redrawStart(x, y);
+        }
+        
+        
+	}
+	
+	public double getStartX(){
+		return startX;
+	}
+	
+	public double getStartY(){
+		return startY;
+	}
+	
+	public double getHeight(){
+		return height;
+	}
+	
+	public double getWidth(){
+		return width;
+	}
+
 }
