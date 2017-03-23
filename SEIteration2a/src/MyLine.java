@@ -17,25 +17,36 @@ public class MyLine {
     ClassBox source;
     ClassBox dest;
     
+    double startX;
+    double startY;
+    double endX;
+    double endY;
+    
     Line line = new Line();
     
-    public MyLine (ClassBox src, ClassBox destination) {
-		
-		this.source = src;
-		this.dest = destination;	
-		
-		double midX = source.width/2;
-        double midY = source.height*1.5;
-    	
-        double startX = source.startX + midX;
-        double startY = source.startY + midY;
-        double endX = dest.startX + midX;
-        double endY = dest.startY + midY;
-		
+    public MyLine (double startX, double startY, double endX, double endY) {
+		this.startX=startX;
+		this.startY=startY;
+		this.endX=endX;
+		this.endY=endY;
         line.setStartX(startX);
         line.setStartY(startY);
         line.setEndX(endX);
         line.setEndY(endY);
        
 	}
+    
+    public void redrawStart(double x, double y){
+    	startX+=x;
+    	startY+=y;
+    	line.setStartX(startX);
+    	line.setStartY(startY);
+    }
+    
+    public void redrawEnd(double x, double y){
+    	endX+=x;
+    	endY+=y;
+    	line.setEndX(endX);
+    	line.setEndY(endY);
+    }
 }

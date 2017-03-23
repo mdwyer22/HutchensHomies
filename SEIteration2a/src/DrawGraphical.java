@@ -32,7 +32,13 @@ public class DrawGraphical {
     private boolean toDrawLine = false;
     private ClassBox source;
     private ClassBox destination;
+    private ClassBox current;
     
+    double mouseX;
+    double mouseY;
+    
+    
+       
     public DrawGraphical(Text togglebox) {
     	
     	this.togglebox = togglebox;
@@ -60,14 +66,16 @@ public class DrawGraphical {
     	
     	list.add(newbox); 
     	
-    	newbox.baseRec.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+    	newbox.baseRec.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(toDrawLine){
                 	if(source == null){
                 		source = newbox;
+                		System.out.println("click source set");
                 	}
                 	else{
+                		System.out.println("click destination set");
                 		destination = newbox;
                 		drawNewLine(source, destination);
                 		source = null;
@@ -80,7 +88,42 @@ public class DrawGraphical {
                 }
             }
         });
-    }
+    	
+    	newbox.baseRec.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>(){
+    		@Override
+    		public void handle(MouseEvent mouseEvent){
+    			if(current==null){
+    				current=newbox;
+    				//newbox.setIsClicked();
+    				System.out.println("source set");
+    				mouseX=mouseEvent.getSceneX();
+    				mouseY=mouseEvent.getSceneY();
+    			}
+    		}
+    	});
+    	
+    	newbox.baseRec.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>(){
+    		@Override
+    		public void handle(MouseEvent mouseEvent){
+    			if(current!=null){
+    				current=null;
+    				//newbox.resetIsClicked();
+    				System.out.println("source reset to null");
+    			}
+    		}
+    	});
+    	
+    	newbox.baseRec.addEventFilter(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>(){
+    		@Override
+    		public void handle(MouseEvent mouseEvent){
+    			//System.out.println("drag event, moving box");
+    			newbox.redraw(mouseEvent.getSceneX()-mouseX, mouseEvent.getSceneY()-mouseY);
+    			mouseX=mouseEvent.getSceneX();
+    			mouseY=mouseEvent.getSceneY();
+    		}
+    	});
+    	
+	}
     
     public void toggleLineDraw() {
     	if(list.size() >= 2){
@@ -104,7 +147,10 @@ public class DrawGraphical {
     		return;
     	}
         
-        MyLine newline = new MyLine(source, dest);
+        MyLine newline = new MyLine(source.getStartX()+source.getWidth()/2, source.getStartY()+source.getHeight()/2, dest.getStartX()+dest.getWidth()/2, dest.getStartY()+dest.getHeight()/2 );
+        source.outboundLines.add(newline);
+        dest.inboundLines.add(newline);
+        
 		
         box.getChildren().add(newline.line);
        
