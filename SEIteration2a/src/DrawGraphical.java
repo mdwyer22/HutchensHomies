@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -71,14 +72,20 @@ public class DrawGraphical {
 				if (toDrawLine) {
 					if (source == null) {
 						source = newbox;
-						System.out.println("click source set");
+						//System.out.println("click source set");
 					} else {
-						System.out.println("click destination set");
+						//System.out.println("click destination set");
 						destination = newbox;
 						drawNewLine(source, destination);
 						source = null;
 						destination = null;
 						toDrawLine = false;
+						
+						for (int i=0; i<list.size();i++){
+							for (int j=0; j<16; j++){
+							box.getChildren().remove(list.get(i).anchorPoints.get(j));
+							}
+						}
 						togglebox.setText("Ready");
 					}
 				} else if (mouseEvent.getClickCount() == 2) {
@@ -87,7 +94,7 @@ public class DrawGraphical {
 					TextEditor teNew = new TextEditor(newbox);
 					newbox.setEditor(teNew);
 				} else {
-					System.out.println("mouse click detected! " + newbox.name);
+					//System.out.println("mouse click detected! " + newbox.name);
 				}
 			}
 		});
@@ -97,8 +104,7 @@ public class DrawGraphical {
 			public void handle(MouseEvent mouseEvent) {
 				if (current == null) {
 					current = newbox;
-					// newbox.setIsClicked();
-					System.out.println("source set");
+					//System.out.println("source set");
 					mouseX = mouseEvent.getSceneX();
 					mouseY = mouseEvent.getSceneY();
 				}
@@ -110,8 +116,7 @@ public class DrawGraphical {
 			public void handle(MouseEvent mouseEvent) {
 				if (current != null) {
 					current = null;
-					// newbox.resetIsClicked();
-					System.out.println("source reset to null");
+					//System.out.println("source reset to null");
 				}
 			}
 		});
@@ -119,7 +124,6 @@ public class DrawGraphical {
 		newbox.baseRec.addEventFilter(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				// System.out.println("drag event, moving box");
 				newbox.redraw(mouseEvent.getSceneX() - mouseX, mouseEvent.getSceneY() - mouseY);
 				mouseX = mouseEvent.getSceneX();
 				mouseY = mouseEvent.getSceneY();
@@ -133,12 +137,23 @@ public class DrawGraphical {
 			if (!toDrawLine) {
 				toDrawLine = true;
 				togglebox.setText("Drawing");
-				System.out.println("Toggle true");
+				//System.out.println("Toggle true");
+				for (int i=0; i<list.size();i++){
+					//list.get(i).showAnchors();
+					for (int j=0; j<16; j++){
+						box.getChildren().add(list.get(i).anchorPoints.get(j));
+					}
+				}
 			} else {
 				toDrawLine = false;
 				source = null;
 				togglebox.setText("Ready");
-				System.out.println("Toggle false");
+				for (int i=0; i<list.size();i++){
+					for (int j=0; j<16; j++){
+					box.getChildren().remove(list.get(i).anchorPoints.get(j));
+					}
+				}
+				//System.out.println("Toggle false");
 			}
 
 		}

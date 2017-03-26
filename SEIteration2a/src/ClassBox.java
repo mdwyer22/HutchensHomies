@@ -29,6 +29,8 @@ public class ClassBox {
 	double startX;
 	double startY;
 	
+	Rectangle clicked = null;
+	
 	int boxCount;
 	String name;
 	
@@ -43,8 +45,10 @@ public class ClassBox {
     Line sep1;
     Line sep2;
     
-    ArrayList<MyLine> outboundLines = new ArrayList<MyLine>(16);
-    ArrayList<MyLine> inboundLines = new ArrayList<MyLine>(16);
+    ArrayList<Rectangle> anchorPoints = new ArrayList<Rectangle>(16);
+    
+    ArrayList<MyLine> outboundLines = new ArrayList<MyLine>(8);
+    ArrayList<MyLine> inboundLines = new ArrayList<MyLine>(8);
         
 	public ClassBox (int boxCount, double base) {
 		
@@ -70,6 +74,30 @@ public class ClassBox {
             t3.setX(startX);
             t3.setY(startY + (2.0/3.0) * height + 12);
             t3.setVisible(true);
+            
+    		for (double i=0; i < 4.0; i++){
+    			anchorPoints.add(new Rectangle(startX+(i/4.0)*width-5, startY-5, 10, 10));
+    		}
+    		for (double i=0; i < 4.0; i++){
+    			anchorPoints.add(new Rectangle(startX+width-5, startY+(i/4.0)*height-5, 10, 10));
+    		}
+    		for (double i=0; i < 4.0; i++){
+    			anchorPoints.add(new Rectangle(startX+width-(i/4.0)*width-5, startY+height-5, 10, 10));
+    		}
+    		for (double i=0; i < 4.0; i++){
+    			anchorPoints.add(new Rectangle(startX+-5, startY+height-(i/4.0)*height-5, 10, 10));
+    		}
+    		
+    		/*
+    		for (int i=0; i<anchorPoints.size();i++){
+    			anchorPoints.get(i).addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
+    				@Override
+    				public void handle(MouseEvent mouseEvent){
+    					
+    				}
+    			});
+    		}
+    		*/
         }
         
         // Hard coded into DrawGraphical; can use to adjust size of box
@@ -130,6 +158,7 @@ public class ClassBox {
         }
         
         
+
 	}
 	
 	public double getStartX(){
@@ -146,6 +175,19 @@ public class ClassBox {
 	
 	public double getWidth(){
 		return width;
+	}
+	
+	public void showAnchors(){
+
+	}
+	
+	public void removeAnchors(){
+		System.out.println();
+		for (int i=0; i<anchorPoints.size(); i++){
+			anchorPoints.remove(i);
+			System.out.println("removed "+ i);
+		}
+		
 	}
 
 }
