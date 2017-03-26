@@ -34,11 +34,13 @@ public class ControlPanel extends Application {
         primaryStage.setTitle("Controls");
         
         Button lineBtn = new Button();
-        Button boxBtn = new Button();
         Text toggleLineRes = new Text("Ready");
+        Button boxBtn = new Button();
+        Button eraser = new Button();
         
         lineBtn.setText("Push to Draw Line");
         boxBtn.setText("Push to Draw Class Box");
+        eraser.setText("Push to Enter Eraser Mode");
         
         DrawGraphical dg = new DrawGraphical(toggleLineRes);
      

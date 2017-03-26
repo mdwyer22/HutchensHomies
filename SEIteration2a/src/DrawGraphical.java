@@ -1,3 +1,4 @@
+
 //http://stackoverflow.com/questions/28566860/javafx-how-to-group-shapes-for-dragging
 
 /*
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -31,8 +33,10 @@ public class DrawGraphical {
 	ArrayList<ClassBox> list = new ArrayList<ClassBox>(4);
 
 	private boolean toDrawLine = false;
+	
 	private ClassBox source;
 	private ClassBox destination;
+	
 	private ClassBox current;
 
 	double mouseX;
@@ -65,30 +69,12 @@ public class DrawGraphical {
 		newbox.setEditor(te);
 
 		list.add(newbox);
+		newbox.setGraphical(this);
 
 		newbox.baseRec.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseEvent) {
-				if (toDrawLine) {
-					if (source == null) {
-						source = newbox;
-						//System.out.println("click source set");
-					} else {
-						//System.out.println("click destination set");
-						destination = newbox;
-						drawNewLine(source, destination);
-						source = null;
-						destination = null;
-						toDrawLine = false;
-						
-						for (int i=0; i<list.size();i++){
-							for (int j=0; j<16; j++){
-							box.getChildren().remove(list.get(i).anchorPoints.get(j));
-							}
-						}
-						togglebox.setText("Ready");
-					}
-				} else if (mouseEvent.getClickCount() == 2) {
+				if (mouseEvent.getClickCount() == 2) {
 					// Create a new text editor
 					te.closeWindow();
 					TextEditor teNew = new TextEditor(newbox);
@@ -150,7 +136,7 @@ public class DrawGraphical {
 				togglebox.setText("Ready");
 				for (int i=0; i<list.size();i++){
 					for (int j=0; j<16; j++){
-					box.getChildren().remove(list.get(i).anchorPoints.get(j));
+						box.getChildren().remove(list.get(i).anchorPoints.get(j));
 					}
 				}
 				//System.out.println("Toggle false");
@@ -159,19 +145,37 @@ public class DrawGraphical {
 		}
 	}
 
-	public void drawNewLine(ClassBox source, ClassBox dest) {
+	public void drawNewLine() {
 		if (list.size() < 2) {
 			return;
 		}
 
-		MyLine newline = new MyLine(source.getStartX() + source.getWidth() / 2,
-				source.getStartY() + source.getHeight() / 2, dest.getStartX() + dest.getWidth() / 2,
-				dest.getStartY() + dest.getHeight() / 2);
+		MyLine newline = new MyLine(source.toSend.getX() + (source.toSend.getWidth()/2), 
+				source.toSend.getY() + (source.toSend.getHeight()/2), 
+				destination.toSend.getX() + (destination.toSend.getWidth()/2), 
+				destination.toSend.getY() + (destination.toSend.getHeight()/2));
 		source.outboundLines.add(newline);
-		dest.inboundLines.add(newline);
+		destination.inboundLines.add(newline);
 
 		box.getChildren().add(newline.line);
+		
+		source.toSend = null;
+		destination.toSend = null;
+		source = null;
+		destination = null;
 
+	}
+	
+	public ClassBox getSource(){
+		return source;
+	}
+	
+	public void setSource(ClassBox src){
+		this.source = src;
+	}
+
+	public void setDest(ClassBox dest){
+		this.destination = dest;
 	}
 
 }
