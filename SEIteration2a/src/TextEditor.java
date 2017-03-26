@@ -23,19 +23,19 @@ public class TextEditor {
 		Label name = new Label("Class Name:");
 		grid.add(name, 0, 0);
 
-		TextField nameField = new TextField();
+		TextField nameField = new TextField(dc.t1.getText());
 		grid.add(nameField, 1, 0);
 
 		Label att = new Label("Attributes:");
 		grid.add(att, 0, 1);
 
-		TextField attField = new TextField();
+		TextField attField = new TextField(dc.t2.getText());
 		grid.add(attField, 1, 1);
 
 		Label op = new Label("Operations:");
 		grid.add(op, 0, 2);
 
-		TextField opField = new TextField();
+		TextField opField = new TextField(dc.t3.getText());
 		grid.add(opField, 1, 2);
 
 		Button submit = new Button("Submit");
