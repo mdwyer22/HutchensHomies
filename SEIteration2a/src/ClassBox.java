@@ -81,17 +81,25 @@ public class ClassBox {
             t3.setY(startY + (2.0/3.0) * height + 12);
             t3.setVisible(true);
             
-            for (double i=0; i < 4.0; i++){
+            for (int i=0; i < 4.0; i++){
     			anchorPoints.add(new Rectangle(startX+(i/4.0)*width-5, startY-5, 10, 10));
+    			anchorPoints.get(i).setFill(Color.WHITE);
+    			anchorPoints.get(i).setStroke(Color.BLACK);
     		}
-    		for (double i=0; i < 4.0; i++){
+    		for (int i=0; i < 4.0; i++){
     			anchorPoints.add(new Rectangle(startX+width-5, startY+(i/4.0)*height-5, 10, 10));
+    			anchorPoints.get(i+4).setFill(Color.WHITE);
+    			anchorPoints.get(i+4).setStroke(Color.BLACK);
     		}
-    		for (double i=0; i < 4.0; i++){
+    		for (int i=0; i < 4.0; i++){
     			anchorPoints.add(new Rectangle(startX+width-(i/4.0)*width-5, startY+height-5, 10, 10));
+    			anchorPoints.get(i+8).setFill(Color.WHITE);
+    			anchorPoints.get(i+8).setStroke(Color.BLACK);
     		}
-    		for (double i=0; i < 4.0; i++){
+    		for (int i=0; i < 4.0; i++){
     			anchorPoints.add(new Rectangle(startX+-5, startY+height-(i/4.0)*height-5, 10, 10));
+    			anchorPoints.get(i+12).setFill(Color.WHITE);
+    			anchorPoints.get(i+12).setStroke(Color.BLACK);
     		}
     		
     		for (int i=0; i<anchorPoints.size();i++){
