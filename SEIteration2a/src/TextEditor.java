@@ -9,11 +9,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+
+/**
+ *
+ * @author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
+ *
+ */
+
 public class TextEditor {
 
 	Stage textEditor = new Stage();
 	GridPane grid = new GridPane();
 	Scene textScene = new Scene(grid, 300, 275);
+	
+	
+	/**
+ 	*
+ 	* Creates a window that can be used to edit the text of a classBox
+	*
+	* @param dc is the classBox whose text is to be edited
+	*
+ 	**/
 
 	public TextEditor(ClassBox dc) {
 
@@ -53,6 +69,12 @@ public class TextEditor {
 		textEditor.show();
 	}
 
+	/**
+ 	*
+ 	* closes the textEditor window
+	*
+ 	**/
+	
 	public void closeWindow() {
 		textEditor.close();
 	}

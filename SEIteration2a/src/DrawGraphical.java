@@ -1,12 +1,12 @@
 
 //http://stackoverflow.com/questions/28566860/javafx-how-to-group-shapes-for-dragging
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 //package hutchenshomies;
+
+/**
+*
+* @author Matt Rumpf, Matt Hahn, Jessica Butts, Mike Dwyer, Jamie Thorpe
+*
+**/
 
 import java.util.ArrayList;
 
@@ -19,10 +19,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author mmhahn1
- */
 public class DrawGraphical {
 
 	Stage stage = new Stage();
@@ -41,6 +37,14 @@ public class DrawGraphical {
 
 	double mouseX;
 	double mouseY;
+	
+	/**
+	*
+	* Creates a graphical window for the UML elements to be drawn in
+	*
+	* @param togglebox is the text that is to be next to the draw line button by default
+	*
+	**/
 
 	public DrawGraphical(Text togglebox) {
 
@@ -51,6 +55,13 @@ public class DrawGraphical {
 		stage.show();
 	}
 
+	/**
+	*
+	* Creates a class box object and the visual objects it contains, sets up event filters to handle desired functionality
+	* for class box objects
+	*
+	**/
+	
 	public void drawClassBox() {
 		// automatically calculates start points based on number of boxes
 		// already present
@@ -118,6 +129,13 @@ public class DrawGraphical {
 
 	}
 
+	/**
+	*
+	* Toggles the graphical window to handle events differently since the user has indicated a line is to be 
+	* Toggles the showing of anchor points for the drawing of lines
+	*
+	**/
+	
 	public void toggleLineDraw() {
 		if (list.size() >= 2) {
 			if (!toDrawLine) {
@@ -145,6 +163,12 @@ public class DrawGraphical {
 		}
 	}
 
+	/**
+	*
+	* Draws a line from the specified source anchor point to the specified destination anchor point
+	*
+	**/
+	
 	public void drawNewLine() {
 		if (list.size() < 2) {
 			return;
@@ -166,14 +190,38 @@ public class DrawGraphical {
 
 	}
 	
+	/**
+	*
+	* returns the source classbox 
+	*
+	* @return a classbox that is specified to be the source of a line
+	*
+	**/
+	
 	public ClassBox getSource(){
 		return source;
 	}
+	
+	/**
+	*
+	* Sets the source classBox for a line that is to be drawn
+	*
+	* @param src is the classBox that is to be the source of the line
+	*
+	**/
 	
 	public void setSource(ClassBox src){
 		this.source = src;
 	}
 
+	/**
+	*
+	* Sets the destination classBox for a line that is to be drawn
+	*
+	* @param dest is the classBox that is to be the destination of the line
+	*
+	**/
+	
 	public void setDest(ClassBox dest){
 		this.destination = dest;
 	}
