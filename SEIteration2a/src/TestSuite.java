@@ -55,4 +55,19 @@ public class TestSuite {
 		assertEquals("Textbox 2 is now empty", "", newText3.get(1));
 		assertEquals("Textbox 3 is now empty", "", newText3.get(2));
 	}
+	
+	@Test
+	public void createTextBoxes() {
+		System.out.println("Test whether class boxes are correctly added to the model:");
+		DrawGraphical dg = new DrawGraphical("Push to Draw Line");
+		dg.drawClassBox();
+		
+		assertEquals("Class box has been added to array list", 1, dg.list.size(), 0);
+		
+		dg.drawClassBox();
+		dg.drawClassBox();
+		dg.drawClassBox();
+		
+		assertEquals("Array list now contains four class boxes", 4, dg.list.size(), 0);
+	}
 }
