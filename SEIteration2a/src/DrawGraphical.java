@@ -78,6 +78,7 @@ public class DrawGraphical {
 
 		TextEditor te = new TextEditor(newbox);
 		newbox.setEditor(te);
+		te.createEditor();
 
 		list.add(newbox);
 		newbox.setGraphical(this);
@@ -90,6 +91,7 @@ public class DrawGraphical {
 					te.closeWindow();
 					TextEditor teNew = new TextEditor(newbox);
 					newbox.setEditor(teNew);
+					te.createEditor();
 				} else {
 					//System.out.println("mouse click detected! " + newbox.name);
 				}

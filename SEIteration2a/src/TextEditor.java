@@ -22,6 +22,8 @@ public class TextEditor {
 	GridPane grid = new GridPane();
 	Scene textScene = new Scene(grid, 300, 275);
 	
+	ClassBox dc;
+	
 	
 	/**
  	*
@@ -31,8 +33,14 @@ public class TextEditor {
 	*
  	**/
 
-	public TextEditor(ClassBox dc) {
+	public TextEditor(ClassBox box) {
 
+		this.dc = box;
+		
+	}
+	
+	public void createEditor() {
+		
 		textEditor.setTitle("Text Editor");
 		grid.setAlignment(Pos.CENTER);
 		textEditor.setScene(textScene);
@@ -62,7 +70,7 @@ public class TextEditor {
 
 			@Override
 			public void handle(ActionEvent event) {
-				dc.setAllText(nameField.getText(), attField.getText(), opField.getText());
+				resetText(nameField.getText(), attField.getText(), opField.getText());
 			}
 		});
 
@@ -77,6 +85,10 @@ public class TextEditor {
 	
 	public void closeWindow() {
 		textEditor.close();
+	}
+	
+	public void resetText(String nameField, String attField, String opField){
+		dc.setAllText(nameField, attField, opField);
 	}
 
 }

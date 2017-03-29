@@ -237,6 +237,18 @@ public class ClassBox {
 	}
 	
 	/**
+	 * @return Array list of the text in t1, t2, and t3
+	 */
+	public ArrayList<String> getText(){
+		ArrayList<String> myText = new ArrayList<String>(3);
+		myText.add(t1.getText());
+		myText.add(t2.getText());
+		myText.add(t3.getText());
+		
+		return myText;
+	}
+	
+	/**
 	* Set the drawGraphical object that created the classBox.
 	* Used to alert drawGraphical to clicks on anchor points when drawing lines.
 	*
