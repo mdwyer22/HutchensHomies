@@ -93,4 +93,34 @@ public class TestSuite {
 	   });
 		
 	}
+	
+	@Test 
+	public void testAnchorPoints() {
+		System.out.println("Test whether the text editor can change the textboxes to empty in a ClassBox");
+		ClassBox anchorTest = new ClassBox(0, 1.0);
+		
+		assertEquals("Test whether the anchor points have been added to the array list in the class box", 16, anchorTest.anchorPoints.getsize(), 0);
+
+	}
+	
+	@Test
+	public void testAddingClassBoxes() {
+		System.out.println("Test whether class boxes are added to the array list:");
+
+		Platform.runLater(new Runnable() {
+	        @Override
+	        public void run() {
+	        	DrawGraphical dg = new DrawGraphical("Push to Draw Line");
+			dg.addClassBox();
+			
+			assertEquals("Test whether the size of the array list is 1", 1, dg.list.size(), 0);
+			
+			dg.addClassBox();
+			dg.addClassBox();
+			dg.addClassBox();
+			assertEquals("Test whether the size of the array list is 1", 4, dg.list.size(), 0);
+	        }
+	   });
+		
+	}
 }
