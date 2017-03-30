@@ -8,7 +8,7 @@
 
 /**
  *
- * @author Jessica Butts, Jamie Thorpe, Matt Rumpf, Matt Hahn, Mike Dwyer
+ * @author mmhahn1
  */
 
 import javafx.application.Application;
@@ -27,12 +27,6 @@ public class ControlPanel extends Application {
         launch(args);
     }
     
-    /**
-    *
-    * Sets up the control panel window and handles action events on the window
-    *
-    **/
-	
     @Override
 	// Shows GUI with two buttons: "Draw Line" and "Draw Class Box"
     public void start(Stage primaryStage) {

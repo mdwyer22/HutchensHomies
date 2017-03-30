@@ -11,6 +11,7 @@
  * @author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
  */
 
+import java.awt.TextArea;
 import java.util.ArrayList;
 
 import javafx.event.EventHandler;
