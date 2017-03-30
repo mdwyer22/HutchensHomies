@@ -11,8 +11,13 @@ import java.util.ArrayList;
 public class TestSuite {
 	
 	@BeforeClass
-	// credit for setUpClass() to Michael Ellis 
-	// http://stackoverflow.com/questions/11385604/how-do-you-unit-test-a-javafx-controller-with-junit
+	/**
+	* Allows the code in the test to use graphical parts.
+	*
+	*@Author Michael Ellis
+		from http://stackoverflow.com/questions/11385604/how-do-you-unit-test-a-javafx-controller-with-junit
+	*@throws InterruptedException
+	*/
 	public static void setUpClass() throws InterruptedException {
 	    // Initialise Java FX
 
@@ -28,6 +33,11 @@ public class TestSuite {
 	    Thread.sleep(500);
 	}
 
+	/**
+	* Tests that the default text values are correct
+	*
+	*@Author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
+	*/
 	@Test
 	public void checkTextInNewBox() {
 		System.out.println("Test the default values in the three textbox sections of a new ClassBox");
@@ -39,6 +49,11 @@ public class TestSuite {
 		assertEquals("Default text in textbox 3 is 'c'", "c", myText1.get(2));	
 	}
 	
+	/**
+	* Tests that the text in the class boxes is changed successfully to new strings
+	*
+	*@Author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
+	*/
 	@Test
 	public void textEditorChangingBoxText() {
 		System.out.println("Test whether the text editor successfully changes the text in the ClassBox");
@@ -62,11 +77,14 @@ public class TestSuite {
 	    		assertEquals("Edited text in textbox 2 is 'New att'", "New att", newText2.get(1));
 	    		assertEquals("Edited text in textbox 3 is 'New ops'", "New ops", newText2.get(2));
 	        }
-	   });
-		
-			
+	   });		
 	}
 	
+	/**
+	* Tests that text in the class box can be changed to empty strings i.e. that the text can be deleted
+	*
+	*@Author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
+	*/
 	@Test
 	public void submitEmptyTextInEditor() {
 		System.out.println("Test whether the text editor can change the textboxes to empty in a ClassBox");
@@ -94,6 +112,11 @@ public class TestSuite {
 		
 	}
 	
+	/**
+	* Tests that the anchor points are added to the class box after it is created
+	*
+	*@Author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
+	*/
 	@Test 
 	public void testAnchorPoints() {
 		System.out.println("Test whether the text editor can change the textboxes to empty in a ClassBox");
@@ -103,6 +126,11 @@ public class TestSuite {
 
 	}
 	
+	/**
+	* Tests that the class boxes are added to the Array List object in DrawGraphical
+	*
+	*@Author Matt Hahn, Matt Rumpf, Jess Butts, Mike Dwyer, Jamie Thorpe
+	*/
 	@Test
 	public void testAddingClassBoxes() {
 		System.out.println("Test whether class boxes are added to the array list:");
