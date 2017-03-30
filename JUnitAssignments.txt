@@ -1,6 +1,6 @@
 classBoxes are in datastructure - Jess
 anchorpoints in datastructure - Jess
-lines are in datastructure
+lines are in datastructure - Mike
 Text entered on creation is applied - Jamie
 Text entered on edit is applied - Jamie
 ClassBox position is changed 
