@@ -70,4 +70,12 @@ public class TestSuite {
 		
 		assertEquals("Array list now contains four class boxes", 4, dg.list.size(), 0);
 	}
+	
+	@Test
+	public void createAnchorPoints() {
+		System.out.println("Test whether anchor points are successfully created on the class box:");
+		ClassBox anchorBox = new ClassBox(0,1.0);
+		
+		assertEquals("Class box has 16 anchor points", 16, anchorBox.anchorPoints.size(), 0);
+	}
 }
