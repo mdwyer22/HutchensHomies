@@ -4,6 +4,6 @@ lines are in datastructure
 Text entered on creation is applied - Jamie
 Text entered on edit is applied - Jamie
 ClassBox position is changed 
-Line position is changed for source
-Line position is changed for destination
+Line position is changed for source - Matt
+Line position is changed for destination - Matt
 
