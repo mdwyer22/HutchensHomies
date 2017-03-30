@@ -118,7 +118,7 @@ public class TestSuite {
 			dg.addClassBox();
 			dg.addClassBox();
 			dg.addClassBox();
-			assertEquals("Test whether the size of the array list is 1", 4, dg.list.size(), 0);
+			assertEquals("Test whether the size of the array list is 4", 4, dg.list.size(), 0);
 	        }
 	   });
 		
