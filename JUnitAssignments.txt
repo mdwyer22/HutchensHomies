@@ -1,0 +1,8 @@
+classBoxes are in datastructure
+lines are in datastructure
+Text entered on creation is applied
+Text entered on edit is applied
+ClassBox position is changed 
+Line position is changed for source
+Line position is changed for destination
+
